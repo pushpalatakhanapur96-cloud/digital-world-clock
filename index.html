@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital World Clock - Multiple Time Zones</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🌍 Digital World Clock</h1>
+            <p>Real-time display across multiple time zones</p>
+        </header>
+
+        <!-- Controls -->
+        <div class="controls">
+            <div class="format-toggle">
+                <button class="toggle-btn active" id="format24" onclick="toggleFormat('24')">
+                    24-Hour
+                </button>
+                <button class="toggle-btn" id="format12" onclick="toggleFormat('12')">
+                    12-Hour (AM/PM)
+                </button>
+            </div>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 Search timezone..." onkeyup="searchTimezone()">
+            </div>
+            <button class="btn-add" onclick="openAddTimezoneModal()">+ Add Timezone</button>
+        </div>
+
+        <!-- Main Clocks Grid -->
+        <div class="clocks-grid" id="clocksGrid">
+            <!-- Clocks will be generated here -->
+        </div>
+
+        <!-- Modal for Adding Timezone -->
+        <div id="addTimezoneModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Add New Timezone</h2>
+                    <button class="close-btn" onclick="closeAddTimezoneModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Select Timezone:</label>
+                        <select id="timezoneSelect">
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Custom Label (Optional):</label>
+                        <input type="text" id="customLabel" placeholder="e.g., My Office, Home, etc.">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-cancel" onclick="closeAddTimezoneModal()">Cancel</button>
+                    <button class="btn-add" onclick="addNewTimezone()">Add Timezone</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Panel -->
+        <div class="settings-panel">
+            <div class="settings-header">
+                <h3>⚙️ Settings</h3>
+                <button class="close-settings" onclick="toggleSettings()">&times;</button>
+            </div>
+            <div class="settings-content">
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="showSeconds" checked onchange="updateClocks()">
+                        Show Seconds
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="showDate" checked onchange="updateClocks()">
+                        Show Date
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="use12Hour" onchange="toggleFormat(use12Hour ? '12' : '24')">
+                        12-Hour Format
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="theme">Theme:</label>
+                    <select id="theme" onchange="changeTheme()">
+                        <option value="dark">Dark</option>
+                        <option value="light">Light</option>
+                        <option value="ocean">Ocean</option>
+                        <option value="sunset">Sunset</option>
+                        <option value="forest">Forest</option>
+                    </select>
+                </div>
+                <button class="btn-reset" onclick="resetToDefaults()">Reset to Defaults</button>
+            </div>
+        </div>
+
+        <!-- Settings Toggle Button -->
+        <button class="settings-toggle" onclick="toggleSettings()">⚙️</button>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
